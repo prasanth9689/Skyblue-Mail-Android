@@ -74,6 +74,7 @@ fun screenName(screen: String): String {
         Screens.InboxScreen -> "Inbox"
         Screens.SentScreen -> "Sent"
         Screens.DraftsScreen -> "Drafts"
+        Screens.ImportantScreen -> "Important"
         else -> ""
     }
 }
@@ -332,6 +333,17 @@ fun NavigationDrawer(
                                                            modifier = Modifier.size(25.dp))}
                 ) {
                     onScreenChanged(Screens.DraftsScreen)
+                    scope.launch { drawerState.close() }
+                }
+                Divider()
+
+                DrawerItem(
+                    Screens.ImportantScreen,
+                    icon = {Icon(painter = painterResource(id = R.drawable.ic_important),
+                        contentDescription = "Important",
+                        modifier = Modifier.size(25.dp))}
+                ) {
+                    onScreenChanged(Screens.ImportantScreen)
                     scope.launch { drawerState.close() }
                 }
                 Divider()

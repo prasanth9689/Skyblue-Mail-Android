@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="primaryColor">#2971FC</color>
     <color name="inbox">#0091FF</color>
     <color name="sent">#E91E63</color>
     <color name="drafts">#069E0C</color>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -13,12 +14,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.Divider
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
@@ -75,6 +72,11 @@ fun screenName(screen: String): String {
         Screens.SentScreen -> "Sent"
         Screens.DraftsScreen -> "Drafts"
         Screens.ImportantScreen -> "Important"
+        Screens.SpamScreen -> "Spam"
+        Screens.TrashScreen -> "Trash"
+        Screens.CalendarScreen -> "Calendar"
+        Screens.SettingsScreen -> "Settings"
+        Screens.LogoutScreen -> "Logout"
         else -> ""
     }
 }
@@ -247,6 +249,16 @@ fun TopBar(
             titleContentColor = colorResource(R.color.black),
         ),
         title = { Text("Skyblue Mail") },
+        actions = {
+            // Replace with your image resource
+            Image(
+                painter = painterResource(id = R.drawable.logo),
+                contentDescription = "Logo",
+                modifier = Modifier
+                    .size(32.dp)
+                    .padding(end = 8.dp)
+            )
+        },
         navigationIcon = {
             if (showPreviousButton) {
                 GoBackButton(onClick = { onBackPressed() })
@@ -344,6 +356,73 @@ fun NavigationDrawer(
                         modifier = Modifier.size(25.dp))}
                 ) {
                     onScreenChanged(Screens.ImportantScreen)
+                    scope.launch { drawerState.close() }
+                }
+                Divider()
+
+                // new to
+                DrawerItem(
+                    Screens.SpamScreen,
+                    icon = {Icon(painter = painterResource(id = R.drawable.ic_spam),
+                        contentDescription = "Spam",
+                        modifier = Modifier.size(25.dp))}
+                ) {
+                    onScreenChanged(Screens.SpamScreen)
+                    scope.launch { drawerState.close() }
+                }
+                Divider()
+
+                DrawerItem(
+                    Screens.TrashScreen,
+                    icon = {Icon(painter = painterResource(id = R.drawable.ic_trash),
+                        contentDescription = "Trash",
+                        modifier = Modifier.size(25.dp))}
+                ) {
+                    onScreenChanged(Screens.TrashScreen)
+                    scope.launch { drawerState.close() }
+                }
+                Divider()
+
+                DrawerItem(
+                    Screens.CalendarScreen,
+                    icon = {Icon(painter = painterResource(id = R.drawable.ic_calendar),
+                        contentDescription = "Calendar",
+                        modifier = Modifier.size(25.dp))}
+                ) {
+                    onScreenChanged(Screens.CalendarScreen)
+                    scope.launch { drawerState.close() }
+                }
+                Divider()
+
+                DrawerItem(
+                    Screens.CalendarScreen,
+                    icon = {Icon(painter = painterResource(id = R.drawable.ic_calendar),
+                        contentDescription = "Calendar",
+                        modifier = Modifier.size(25.dp))}
+                ) {
+                    onScreenChanged(Screens.CalendarScreen)
+                    scope.launch { drawerState.close() }
+                }
+                Divider()
+
+                DrawerItem(
+                    Screens.SettingsScreen,
+                    icon = {Icon(painter = painterResource(id = R.drawable.ic_settings),
+                        contentDescription = "Settings",
+                        modifier = Modifier.size(25.dp))}
+                ) {
+                    onScreenChanged(Screens.SettingsScreen)
+                    scope.launch { drawerState.close() }
+                }
+                Divider()
+
+                DrawerItem(
+                    Screens.LogoutScreen,
+                    icon = {Icon(painter = painterResource(id = R.drawable.ic_settings),
+                        contentDescription = "Logout",
+                        modifier = Modifier.size(25.dp))}
+                ) {
+                    onScreenChanged(Screens.LogoutScreen)
                     scope.launch { drawerState.close() }
                 }
                 Divider()
